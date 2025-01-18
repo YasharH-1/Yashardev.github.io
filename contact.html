@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact - SecDevOps Portfolio</title>
+  <link rel="stylesheet" href="global.css">
+  <link rel="stylesheet" href="contact.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="skills.html">Skills</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <button id="dark-mode-toggle">🌙</button>
+    </nav>
+  </header>
+  <main>
+    <!-- Contact Section -->
+    <section id="contact">
+      <h1>Contact Me</h1>
+      <p>Have a question or want to collaborate? Feel free to reach out!</p>
+
+      <!-- Contact Information -->
+      <div class="contact-info">
+        <div class="info-card">
+          <div class="icon">
+            <i class="fas fa-phone"></i>
+          </div>
+          <h3>Phone</h3>
+          <p><a href="tel:+989023134344">0902 313 4344</a></p>
+        </div>
+        <div class="info-card">
+          <div class="icon">
+            <i class="fab fa-telegram"></i>
+          </div>
+          <h3>Telegram</h3>
+          <p><a href="https://t.me/yashar_H_1" target="_blank">@yashar_H_1</a></p>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <form class="contact-form">
+        <div class="form-grid">
+          <input type="text" name="name" placeholder="Your Name" required>
+          <input type="email" name="email" placeholder="Your Email" required>
+          <textarea name="message" placeholder="Your Message" required></textarea>
+        </div>
+        <button type="submit">Send Message</button>
+      </form>
+      <div class="loading-spinner"></div>
+      <div class="message"></div>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2023 SecDevOps Portfolio. All rights reserved.</p>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
