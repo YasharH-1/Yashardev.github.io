@@ -85,3 +85,42 @@ html, body {
     color: #1a1a1a;
     border-color: #1a1a1a;
   }
+  /* Dark Mode Toggle Button - Minimalistic Design */
+#dark-mode-toggle {
+  background-color: transparent; /* Transparent background */
+  border: 2px solid #00ffcc; /* Border color */
+  color: #00ffcc; /* Text color */
+  padding: 8px 16px;
+  border-radius: 20px; /* Slightly rounded corners */
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px; /* Space between icon and text */
+  box-shadow: none; /* No shadow initially */
+}
+
+#dark-mode-toggle:hover {
+  background-color: rgba(0, 255, 204, 0.1); /* Light overlay on hover */
+  border-color: #00ccaa; /* Hover border color */
+  color: #00ccaa; /* Hover text color */
+  transform: scale(1.05); /* Slight zoom effect on hover */
+}
+
+#dark-mode-toggle:active {
+  transform: scale(0.95); /* Slight shrink effect on click */
+}
+
+/* Dark Mode Specific Styles */
+body.dark-mode #dark-mode-toggle {
+  border-color: #00ffcc; /* Dark mode border color */
+  color: #00ffcc; /* Dark mode text color */
+}
+
+body.dark-mode #dark-mode-toggle:hover {
+  background-color: rgba(0, 255, 204, 0.1); /* Light overlay on hover in dark mode */
+  border-color: #00ccaa; /* Hover border color in dark mode */
+  color: #00ccaa; /* Hover text color in dark mode */   
+}
