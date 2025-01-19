@@ -32,8 +32,8 @@
         <!-- Matrix Canvas -->
         <canvas id="matrix-canvas"></canvas>
         <div class="hero-content">
-          <h1>Welcome to the Future of Tech & DevOps</h1>
-          <p>Building scalable, efficient, and secure solutions for the modern world.</p>
+          <h1 :class="{ 'light-mode-text': !darkMode }">Welcome to the Future of Tech & DevOps</h1>
+          <p :class="{ 'light-mode-text': !darkMode }">Building scalable, efficient, and secure solutions for the modern world.</p>
           <!-- Link to the "What I Do" section -->
           <a href="#features" class="cta-button">Explore More</a>
         </div>
