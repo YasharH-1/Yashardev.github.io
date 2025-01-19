@@ -8,67 +8,97 @@
   <link rel="stylesheet" href="index.css">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Orbitron:wght@500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 </head>
 <body>
-  <header>
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="skills.html">Skills</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-      <button id="dark-mode-toggle">
-        <span class="toggle-icon">🌙</span>
-        <span class="toggle-text">Dark Mode</span>
-      </button>
-    </nav>
-  </header>
-  <main>
-<!-- Hero Section -->
-<section id="hero">
-  <div class="hero-content">
-    <h1>Welcome to the Future of Tech & DevOps</h1>
-    <p>Building scalable, efficient, and Secure solutions for the modern world.</p>
-    <a href="#features" class="cta-button">Explore More</a> <!-- Updated href to #features -->
-  </div>
-  <div class="hero-background">
-    <div class="glow"></div>
-    <div class="circuit-lines"></div>
-  </div>
-</section>
+  <div id="app">
+    <header>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="skills.html">Skills</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <button id="dark-mode-toggle" @click="toggleDarkMode">
+          <span class="toggle-icon">{{ darkMode ? '☀️' : '🌙' }}</span>
+          <span class="toggle-text">{{ darkMode ? 'Light Mode' : 'Dark Mode' }}</span>
+        </button>
+      </nav>
+    </header>
+    <main>
+      <!-- Hero Section -->
+      <section id="hero">
+        <div class="hero-content">
+          <h1>Welcome to the Future of Tech & DevOps</h1>
+          <p>Building scalable, efficient, and secure solutions for the modern world.</p>
+          <a href="#features" class="cta-button">Explore More</a>
+        </div>
+        <div class="hero-background">
+          <div class="glow"></div>
+          <div class="circuit-lines"></div>
+        </div>
+      </section>
 
-<!-- Features Section -->
-<section id="features">
-  <h2>What I Do</h2>
-  <div class="feature-grid">
-    <div class="feature-card">
-      <i class="fas fa-code"></i>
-      <h3>Automation</h3>
-      <p>Design and implement automation pipelines using tools like Jenkins or GitHub Actions to streamline workflows, ensuring consistency and efficiency. Automate repetitive tasks, integrate testing, and enable continuous deployment.</p>
-    </div>
-    <div class="feature-card">
-      <i class="fas fa-project-diagram"></i>
-      <h3>Deep Project Architecture</h3>
-      <p>Design and implement robust, scalable, and secure architectures for complex systems. Expertise in microservices, event-driven design, and distributed systems to ensure high performance and reliability.</p>
-    </div>
-    <div class="feature-card">
-      <i class="fas fa-cogs"></i>
-      <h3>CI/CD</h3>
-      <p>Design, implement, and optimize CI/CD pipelines to automate the build, test, and deployment processes. Expertise in tools like Jenkins, GitLab CI, and GitHub Actions to ensure faster, reliable, and error-free software delivery.</p>
-    </div>
-    <!-- New Secure Testing Card -->
-    <div class="feature-card">
-      <i class="fas fa-shield-alt"></i>
-      <h3>Secure Testing</h3>
-      <p>Implement secure testing practices to identify vulnerabilities and ensure compliance with security standards. Expertise in tools like OWASP ZAP, SonarQube, and Snyk for vulnerability scanning, code analysis, and dependency checks.</p>
-    </div>
+      <!-- Features Section -->
+      <section id="features">
+        <h2>What I Do</h2>
+        <div class="feature-grid">
+          <div class="feature-card" v-for="feature in features" :key="feature.title">
+            <i :class="feature.icon"></i>
+            <h3>{{ feature.title }}</h3>
+            <p>{{ feature.description }}</p>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <p>&copy; 2023 SecDevOps Portfolio. All rights reserved.</p>
+    </footer>
   </div>
-</section>
-  </main>
-  <footer>
-    <p>&copy; 2023 SecDevOps Portfolio. All rights reserved.</p>
-  </footer>
   <script src="script.js"></script>
+  <script>
+    const { createApp } = Vue;
+
+    createApp({
+      data() {
+        return {
+          darkMode: localStorage.getItem('darkMode') === 'enabled',
+          features: [
+            {
+              icon: 'fas fa-code',
+              title: 'Automation',
+              description: 'Design and implement automation pipelines using tools like Jenkins or GitHub Actions to streamline workflows, ensuring consistency and efficiency.'
+            },
+            {
+              icon: 'fas fa-project-diagram',
+              title: 'Deep Project Architecture',
+              description: 'Design and implement robust, scalable, and secure architectures for complex systems.'
+            },
+            {
+              icon: 'fas fa-cogs',
+              title: 'CI/CD',
+              description: 'Design, implement, and optimize CI/CD pipelines to automate the build, test, and deployment processes.'
+            },
+            {
+              icon: 'fas fa-shield-alt',
+              title: 'Secure Testing',
+              description: 'Implement secure testing practices to identify vulnerabilities and ensure compliance with security standards.'
+            }
+          ]
+        };
+      },
+      methods: {
+        toggleDarkMode() {
+          this.darkMode = !this.darkMode;
+          document.body.classList.toggle('dark-mode', this.darkMode);
+          localStorage.setItem('darkMode', this.darkMode ? 'enabled' : 'disabled');
+        }
+      },
+      mounted() {
+        document.body.classList.toggle('dark-mode', this.darkMode);
+      }
+    }).mount('#app');
+  </script>
 </body>
 </html>

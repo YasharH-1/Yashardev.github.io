@@ -1,83 +1,83 @@
 /* Skills Page Specific Styles */
 #skills {
-    padding: 50px 20px;
-    text-align: center;
-  }
-  
-  #skills h1 {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 3rem;
-    margin-bottom: 20px;
-    color: #00ffcc;
-  }
-  
-  body:not(.dark-mode) #skills h1 {
-    color: #1a1a1a; /* Light mode heading color */
-  }
-  
-  #skills p {
-    font-size: 1.2rem;
-    margin-bottom: 30px;
-  }
-  
-  .skill-category {
-    margin-bottom: 40px;
-  }
-  
-  .skill-category h2 {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 2rem;
-    margin-bottom: 20px;
-    color: #00ffcc;
-  }
-  
-  body:not(.dark-mode) .skill-category h2 {
-    color: #1a1a1a; /* Light mode heading color */
-  }
-  
-  .skill-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  
-  .skill-card {
-    background-color: #f9f9f9; /* Light mode background */
-    padding: 20px;
-    border: 1px solid #1a1a1a; /* Light mode border */
-    border-radius: 10px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  body.dark-mode .skill-card {
-    background-color: #2a2a2a; /* Dark mode background */
-    border-color: #00ffcc; /* Dark mode border */
-  }
-  
-  .skill-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 20px rgba(0, 255, 204, 0.2);
-  }
-  
-  .skill-card img {
-    width: 60px;
-    height: 60px;
-    margin-bottom: 15px;
-  }
-  
-  .skill-card h3 {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-    color: #00ffcc;
-  }
-  
-  body:not(.dark-mode) .skill-card h3 {
-    color: #1a1a1a; /* Light mode heading color */
-  }
-  
-  .skill-card p {
-    font-size: 1rem;
-  }
+  padding: 50px 20px;
+  text-align: center;
+}
+
+#skills h1 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: #00ffcc;
+}
+
+body:not(.dark-mode) #skills h1 {
+  color: #1a1a1a; /* Light mode heading color */
+}
+
+#skills p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+.skill-category {
+  margin-bottom: 40px;
+}
+
+.skill-category h2 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #00ffcc;
+}
+
+body:not(.dark-mode) .skill-category h2 {
+  color: #1a1a1a; /* Light mode heading color */
+}
+
+.skill-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.skill-card {
+  background-color: #f9f9f9; /* Light mode background */
+  padding: 20px;
+  border: 1px solid #1a1a1a; /* Light mode border */
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+body.dark-mode .skill-card {
+  background-color: #2a2a2a; /* Dark mode background */
+  border-color: #00ffcc; /* Dark mode border */
+}
+
+.skill-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 255, 204, 0.2);
+}
+
+.skill-card img {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 15px;
+}
+
+.skill-card h3 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #00ffcc;
+}
+
+body:not(.dark-mode) .skill-card h3 {
+  color: #1a1a1a; /* Light mode heading color */
+}
+
+.skill-card p {
+  font-size: 1rem;
+}
