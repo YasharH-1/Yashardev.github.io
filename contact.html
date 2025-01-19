@@ -32,14 +32,28 @@
         <h1>Contact Me</h1>
         <p>Have a question or want to collaborate? Feel free to reach out!</p>
 
-        <!-- Contact Information -->
-        <div class="contact-info">
-          <div class="info-card" v-for="info in contactInfo" :key="info.type">
-            <div class="icon">
-              <i :class="info.icon"></i>
-            </div>
-            <h3>{{ info.type }}</h3>
-            <p><a :href="info.link">{{ info.value }}</a></p>
+        <!-- Connect with Me Section -->
+        <div class="connect-with-me">
+          <h2>Connect with Me</h2>
+          <div class="social-icons">
+            <a href="https://github.com/YasharH-1" target="_blank" title="GitHub">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="https://instagram.com/yashar_.ba" target="_blank" title="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://x.com/yasharhacker1?s=21" target="_blank" title="Twitter">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="mailto:ybasir158@gmail.com" title="Gmail">
+              <i class="fas fa-envelope"></i>
+            </a>
+            <a href="https://t.me/yashar_H_1" target="_blank" title="Telegram">
+              <i class="fab fa-telegram"></i>
+            </a>
+            <a href="tel:+989023134344" title="Phone">
+              <i class="fas fa-phone"></i>
+            </a>
           </div>
         </div>
 
@@ -68,10 +82,6 @@
       data() {
         return {
           darkMode: localStorage.getItem('darkMode') === 'enabled',
-          contactInfo: [
-            { type: 'Phone', icon: 'fas fa-phone', value: '0902 313 4344', link: 'tel:+989023134344' },
-            { type: 'Telegram', icon: 'fab fa-telegram', value: '@yashar_H_1', link: 'https://t.me/yashar_H_1' }
-          ],
           form: {
             name: '',
             email: '',

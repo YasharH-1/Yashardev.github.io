@@ -20,56 +20,49 @@ body:not(.dark-mode) #contact h1 {
   margin-bottom: 30px;
 }
 
-.contact-info {
+/* Connect with Me Section */
+.connect-with-me {
+  margin-bottom: 40px;
+}
+
+.connect-with-me h2 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #00ffcc;
+}
+
+body:not(.dark-mode) .connect-with-me h2 {
+  color: #1a1a1a; /* Light mode heading color */
+}
+
+.social-icons {
   display: flex;
   justify-content: center;
   gap: 30px;
-  margin-bottom: 40px;
   flex-wrap: wrap;
 }
 
-.info-card {
-  background: linear-gradient(135deg, #00ffcc, #00ccaa);
-  padding: 20px;
-  border-radius: 15px;
-  width: 250px;
-  text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.info-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 10px 20px rgba(0, 255, 204, 0.3);
-}
-
-.info-card .icon {
+.social-icons a {
+  color: #00ffcc;
   font-size: 2.5rem;
-  color: #ffffff;
-  margin-bottom: 15px;
+  transition: transform 0.3s ease, color 0.3s ease;
 }
 
-.info-card h3 {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 1.5rem;
-  margin-bottom: 10px;
-  color: #ffffff;
+.social-icons a:hover {
+  transform: scale(1.2);
+  color: #00ccff;
 }
 
-.info-card p {
-  font-size: 1.1rem;
-  margin: 0;
-  color: #ffffff;
+body:not(.dark-mode) .social-icons a {
+  color: #1a1a1a; /* Light mode icon color */
 }
 
-.info-card a {
-  color: #ffffff;
-  text-decoration: none;
+body:not(.dark-mode) .social-icons a:hover {
+  color: #0077cc; /* Light mode hover color */
 }
 
-.info-card a:hover {
-  text-decoration: underline;
-}
-
+/* Contact Form */
 .contact-form {
   max-width: 800px;
   margin: 0 auto;
