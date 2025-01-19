@@ -8,184 +8,125 @@
   <link rel="stylesheet" href="skills.css">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Orbitron:wght@500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <script src="https://unpkg.com/vue@3"></script>
 </head>
 <body>
-  <header>
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="skills.html">Skills</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-      <button id="dark-mode-toggle">
-        <span class="toggle-icon">🌙</span>
-        <span class="toggle-text">Dark Mode</span>
-      </button>
-    </nav>
-  </header>
-  <main>
-    <!-- Skills Section -->
-    <section id="skills">
-      <h1>My Skills</h1>
-      <p>Here are the tools and technologies I work with, along with my areas of expertise.</p>
+  <div id="app">
+    <header>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="skills.html">Skills</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <button id="dark-mode-toggle" @click="toggleDarkMode">
+          <span class="toggle-icon">{{ darkMode ? '☀️' : '🌙' }}</span>
+          <span class="toggle-text">{{ darkMode ? 'Light Mode' : 'Dark Mode' }}</span>
+        </button>
+      </nav>
+    </header>
+    <main>
+      <!-- Skills Section -->
+      <section id="skills">
+        <h1>My Skills</h1>
+        <p>Here are the tools and technologies I work with, along with my areas of expertise.</p>
 
-      <!-- Programming Languages -->
-      <div class="skill-category">
-        <h2>Programming Languages</h2>
-        <div class="skill-grid">
-          <div class="skill-card">
-            <img src="https://img.icons8.com/color/96/000000/python.png" alt="Python">
-            <h3>Python</h3>
-            <p>Proficient in Python for scripting, automation, and backend development.</p>
-          </div>
-          <div class="skill-card">
-            <img src="https://img.icons8.com/color/96/000000/golang.png" alt="Go">
-            <h3>Go</h3>
-            <p>Experienced in Go for building efficient and scalable applications.</p>
+        <!-- Skill Categories -->
+        <div class="skill-category" v-for="category in skillCategories" :key="category.title">
+          <h2>{{ category.title }}</h2>
+          <div class="skill-grid">
+            <div class="skill-card" v-for="skill in category.skills" :key="skill.name">
+              <img :src="skill.icon" :alt="skill.name">
+              <h3>{{ skill.name }}</h3>
+              <p>{{ skill.description }}</p>
+            </div>
           </div>
         </div>
-      </div>
-
-      <!-- Frontend Development -->
-      <div class="skill-category">
-        <h2>Frontend Development</h2>
-        <div class="skill-grid">
-          <div class="skill-card">
-            <img src="https://img.icons8.com/color/96/000000/html-5.png" alt="HTML">
-            <h3>HTML</h3>
-            <p>Strong knowledge of HTML for building structured web pages.</p>
-          </div>
-          <div class="skill-card">
-            <img src="https://img.icons8.com/color/96/000000/css3.png" alt="CSS">
-            <h3>CSS</h3>
-            <p>Proficient in CSS for styling and designing responsive websites.</p>
-          </div>
-          <div class="skill-card">
-            <img src="https://img.icons8.com/color/96/000000/javascript.png" alt="JavaScript">
-            <h3>JavaScript</h3>
-            <p>Experienced in JavaScript for dynamic and interactive web development.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Databases -->
-      <div class="skill-category">
-        <h2>Databases</h2>
-        <div class="skill-grid">
-          <div class="skill-card">
-            <img src="https://img.icons8.com/color/96/000000/mysql-logo.png" alt="MySQL">
-            <h3>MySQL</h3>
-            <p>Skilled in designing and managing relational databases with MySQL.</p>
-          </div>
-          <div class="skill-card">
-            <img src="https://img.icons8.com/color/96/000000/mongodb.png" alt="NoSQL">
-            <h3>NoSQL</h3>
-            <p>Experienced in working with NoSQL databases like MongoDB.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Version Control -->
-      <div class="skill-category">
-        <h2>Version Control</h2>
-        <div class="skill-grid">
-          <div class="skill-card">
-            <img src="https://img.icons8.com/color/96/000000/git.png" alt="Git">
-            <h3>Git</h3>
-            <p>Proficient in Git for version control and collaboration.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- DevOps Tools -->
-      <div class="skill-category">
-        <h2>DevOps Tools</h2>
-        <div class="skill-grid">
-          <div class="skill-card">
-            <img src="https://img.icons8.com/color/96/000000/docker.png" alt="Docker">
-            <h3>Docker</h3>
-            <p>Experienced in containerizing applications using Docker.</p>
-          </div>
-          <div class="skill-card">
-            <img src="https://img.icons8.com/color/96/000000/kubernetes.png" alt="Kubernetes">
-            <h3>Kubernetes</h3>
-            <p>Skilled in orchestrating containers with Kubernetes.</p>
-          </div>
-          <div class="skill-card">
-            <img src="https://img.icons8.com/color/96/000000/ansible.png" alt="Ansible">
-            <h3>Ansible</h3>
-            <p>Proficient in automation and configuration management with Ansible.</p>
-          </div>
-          <div class="skill-card">
-            <img src="https://img.icons8.com/color/96/000000/jenkins.png" alt="Jenkins">
-            <h3>Jenkins</h3>
-            <p>Experienced in setting up CI/CD pipelines with Jenkins.</p>
-          </div>
-          <div class="skill-card">
-            <img src="https://www.myqnap.org/wp-content/uploads/sonarqube-logo.png" alt="SonarQube" style="width: 60px; height: 60px;">
-            <h3>SonarQube</h3>
-            <p>Skilled in code quality analysis using SonarQube.</p>
-          </div>
-          <div class="skill-card">
-            <img src="https://www.sonatype.com/hubfs/2-2023-Product%20Logos/sonatype-repo-icon.png" alt="Nexus" style="width: 60px; height: 60px;">
-            <h3>Nexus</h3>
-            <p>Experienced in artifact management with Nexus.</p>
-          </div>
-          <!-- New Burp Suite Card -->
-          <div class="skill-card">
-            <img src="https://dradis.com/images/integrations/integrations/burp.png" alt="Burp Suite" style="width: 60px; height: 60px;">
-            <h3>Burp Suite</h3>
-            <p>Proficient in web application security testing using Burp Suite.</p>
-          </div>
-              <!-- New TestOps Card -->
-          <div class="skill-card">
-            <img src="https://d25v584w39wn8g.cloudfront.net/fvg01o6nyugmpn8e-Katalon-TestOps-icon-color-large.png" alt="TestOps" style="width: 60px; height: 60px;">
-            <h3>TestOps</h3>
-            <p>Experienced in integrating testing into CI/CD pipelines for seamless quality assurance.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Monitoring & Logging -->
-      <div class="skill-category">
-        <h2>Monitoring & Logging</h2>
-        <div class="skill-grid">
-          <div class="skill-card">
-            <img src="https://img.icons8.com/color/96/000000/grafana.png" alt="Grafana">
-            <h3>Grafana</h3>
-            <p>Proficient in visualizing metrics and logs with Grafana.</p>
-          </div>
-          <div class="skill-card">
-            <img src="https://static-00.iconduck.com/assets.00/prometheus-icon-511x512-1vmxbcxr.png" alt="Prometheus" style="width: 60px; height: 60px;">
-            <h3>Prometheus</h3>
-            <p>Experienced in monitoring systems with Prometheus.</p>
-          </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Project Management -->
-      <div class="skill-category">
-        <h2>Project Management</h2>
-        <div class="skill-grid">
-          <div class="skill-card">
-            <img src="https://img.icons8.com/color/96/000000/jira.png" alt="Jira">
-            <h3>Jira</h3>
-            <p>Experienced in agile project management with Jira.</p>
-          </div>
-          <div class="skill-card">
-            <img src="https://img.icons8.com/color/96/000000/confluence.png" alt="Confluence">
-            <h3>Confluence</h3>
-            <p>Proficient in documentation and collaboration using Confluence.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-  <footer>
-    <p>&copy; 2023 SecDevOps Portfolio. All rights reserved.</p>
-  </footer>
+      </section>
+    </main>
+    <footer>
+      <p>&copy; 2023 SecDevOps Portfolio. All rights reserved.</p>
+    </footer>
+  </div>
   <script src="script.js"></script>
+  <script>
+    const { createApp } = Vue;
+
+    createApp({
+      data() {
+        return {
+          darkMode: localStorage.getItem('darkMode') === 'enabled',
+          skillCategories: [
+            {
+              title: 'Programming Languages',
+              skills: [
+                { name: 'Python', icon: 'https://img.icons8.com/color/96/000000/python.png', description: 'Proficient in Python for scripting, automation, and backend development.' },
+                { name: 'Go', icon: 'https://img.icons8.com/color/96/000000/golang.png', description: 'Experienced in Go for building efficient and scalable applications.' }
+              ]
+            },
+            {
+              title: 'Frontend Development',
+              skills: [
+                { name: 'HTML', icon: 'https://img.icons8.com/color/96/000000/html-5.png', description: 'Strong knowledge of HTML for building structured web pages.' },
+                { name: 'CSS', icon: 'https://img.icons8.com/color/96/000000/css3.png', description: 'Proficient in CSS for styling and designing responsive websites.' },
+                { name: 'JavaScript', icon: 'https://img.icons8.com/color/96/000000/javascript.png', description: 'Experienced in JavaScript for dynamic and interactive web development.' }
+              ]
+            },
+            {
+              title: 'Databases',
+              skills: [
+                { name: 'MySQL', icon: 'https://img.icons8.com/color/96/000000/mysql-logo.png', description: 'Skilled in designing and managing relational databases with MySQL.' },
+                { name: 'NoSQL', icon: 'https://img.icons8.com/color/96/000000/mongodb.png', description: 'Experienced in working with NoSQL databases like MongoDB.' }
+              ]
+            },
+            {
+              title: 'Version Control',
+              skills: [
+                { name: 'Git', icon: 'https://img.icons8.com/color/96/000000/git.png', description: 'Proficient in Git for version control and collaboration.' }
+              ]
+            },
+            {
+              title: 'DevOps Tools',
+              skills: [
+                { name: 'Docker', icon: 'https://img.icons8.com/color/96/000000/docker.png', description: 'Experienced in containerizing applications using Docker.' },
+                { name: 'Kubernetes', icon: 'https://img.icons8.com/color/96/000000/kubernetes.png', description: 'Skilled in orchestrating containers with Kubernetes.' },
+                { name: 'Ansible', icon: 'https://img.icons8.com/color/96/000000/ansible.png', description: 'Proficient in automation and configuration management with Ansible.' },
+                { name: 'Jenkins', icon: 'https://img.icons8.com/color/96/000000/jenkins.png', description: 'Experienced in setting up CI/CD pipelines with Jenkins.' },
+                { name: 'SonarQube', icon: 'https://www.myqnap.org/wp-content/uploads/sonarqube-logo.png', description: 'Skilled in code quality analysis using SonarQube.' },
+                { name: 'Nexus', icon: 'https://www.sonatype.com/hubfs/2-2023-Product%20Logos/sonatype-repo-icon.png', description: 'Experienced in artifact management with Nexus.' },
+                { name: 'Burp Suite', icon: 'https://dradis.com/images/integrations/integrations/burp.png', description: 'Proficient in web application security testing using Burp Suite.' },
+                { name: 'TestOps', icon: 'https://d25v584w39wn8g.cloudfront.net/fvg01o6nyugmpn8e-Katalon-TestOps-icon-color-large.png', description: 'Experienced in integrating testing into CI/CD pipelines for seamless quality assurance.' }
+              ]
+            },
+            {
+              title: 'Monitoring & Logging',
+              skills: [
+                { name: 'Grafana', icon: 'https://img.icons8.com/color/96/000000/grafana.png', description: 'Proficient in visualizing metrics and logs with Grafana.' },
+                { name: 'Prometheus', icon: 'https://static-00.iconduck.com/assets.00/prometheus-icon-511x512-1vmxbcxr.png', description: 'Experienced in monitoring systems with Prometheus.' }
+              ]
+            },
+            {
+              title: 'Project Management',
+              skills: [
+                { name: 'Jira', icon: 'https://img.icons8.com/color/96/000000/jira.png', description: 'Experienced in agile project management with Jira.' },
+                { name: 'Confluence', icon: 'https://img.icons8.com/color/96/000000/confluence.png', description: 'Proficient in documentation and collaboration using Confluence.' }
+              ]
+            }
+          ]
+        };
+      },
+      methods: {
+        toggleDarkMode() {
+          this.darkMode = !this.darkMode;
+          document.body.classList.toggle('dark-mode', this.darkMode);
+          localStorage.setItem('darkMode', this.darkMode ? 'enabled' : 'disabled');
+        }
+      },
+      mounted() {
+        document.body.classList.toggle('dark-mode', this.darkMode);
+      }
+    }).mount('#app');
+  </script>
 </body>
 </html>

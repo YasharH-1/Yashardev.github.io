@@ -8,62 +8,125 @@
   <link rel="stylesheet" href="contact.css">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Orbitron:wght@500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <script src="https://unpkg.com/vue@3"></script>
 </head>
 <body>
-  <header>
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="skills.html">Skills</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-      <button id="dark-mode-toggle">
-        <span class="toggle-icon">🌙</span>
-        <span class="toggle-text">Dark Mode</span>
-      </button>
-    </nav>
-  </header>
-  <main>
-    <!-- Contact Section -->
-    <section id="contact">
-      <h1>Contact Me</h1>
-      <p>Have a question or want to collaborate? Feel free to reach out!</p>
+  <div id="app">
+    <header>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="skills.html">Skills</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <button id="dark-mode-toggle" @click="toggleDarkMode">
+          <span class="toggle-icon">{{ darkMode ? '☀️' : '🌙' }}</span>
+          <span class="toggle-text">{{ darkMode ? 'Light Mode' : 'Dark Mode' }}</span>
+        </button>
+      </nav>
+    </header>
+    <main>
+      <!-- Contact Section -->
+      <section id="contact">
+        <h1>Contact Me</h1>
+        <p>Have a question or want to collaborate? Feel free to reach out!</p>
 
-      <!-- Contact Information -->
-      <div class="contact-info">
-        <div class="info-card">
-          <div class="icon">
-            <i class="fas fa-phone"></i>
+        <!-- Contact Information -->
+        <div class="contact-info">
+          <div class="info-card" v-for="info in contactInfo" :key="info.type">
+            <div class="icon">
+              <i :class="info.icon"></i>
+            </div>
+            <h3>{{ info.type }}</h3>
+            <p><a :href="info.link">{{ info.value }}</a></p>
           </div>
-          <h3>Phone</h3>
-          <p><a href="tel:+989023134344">0902 313 4344</a></p>
         </div>
-        <div class="info-card">
-          <div class="icon">
-            <i class="fab fa-telegram"></i>
-          </div>
-          <h3>Telegram</h3>
-          <p><a href="https://t.me/yashar_H_1" target="_blank">@yashar_H_1</a></p>
-        </div>
-      </div>
 
-      <!-- Contact Form -->
-      <form class="contact-form">
-        <div class="form-grid">
-          <input type="text" name="name" placeholder="Your Name" required>
-          <input type="email" name="email" placeholder="Your Email" required>
-          <textarea name="message" placeholder="Your Message" required></textarea>
-        </div>
-        <button type="submit">Send Message</button>
-      </form>
-      <div class="loading-spinner"></div>
-      <div class="message"></div>
-    </section>
-  </main>
-  <footer>
-    <p>&copy; 2023 SecDevOps Portfolio. All rights reserved.</p>
-  </footer>
+        <!-- Contact Form -->
+        <form class="contact-form" @submit.prevent="submitForm">
+          <div class="form-grid">
+            <input type="text" v-model="form.name" placeholder="Your Name" required>
+            <input type="email" v-model="form.email" placeholder="Your Email" required>
+            <textarea v-model="form.message" placeholder="Your Message" required></textarea>
+          </div>
+          <button type="submit">Send Message</button>
+        </form>
+        <div class="loading-spinner" v-if="loading"></div>
+        <div class="message" :class="messageType">{{ message }}</div>
+      </section>
+    </main>
+    <footer>
+      <p>&copy; 2023 SecDevOps Portfolio. All rights reserved.</p>
+    </footer>
+  </div>
   <script src="script.js"></script>
+  <script>
+    const { createApp } = Vue;
+
+    createApp({
+      data() {
+        return {
+          darkMode: localStorage.getItem('darkMode') === 'enabled',
+          contactInfo: [
+            { type: 'Phone', icon: 'fas fa-phone', value: '0902 313 4344', link: 'tel:+989023134344' },
+            { type: 'Telegram', icon: 'fab fa-telegram', value: '@yashar_H_1', link: 'https://t.me/yashar_H_1' }
+          ],
+          form: {
+            name: '',
+            email: '',
+            message: ''
+          },
+          loading: false,
+          message: '',
+          messageType: ''
+        };
+      },
+      methods: {
+        toggleDarkMode() {
+          this.darkMode = !this.darkMode;
+          document.body.classList.toggle('dark-mode', this.darkMode);
+          localStorage.setItem('darkMode', this.darkMode ? 'enabled' : 'disabled');
+        },
+        async submitForm() {
+          if (!this.form.name || !this.form.email || !this.form.message) {
+            this.showMessage('Please fill out all fields.', 'error');
+            return;
+          }
+
+          if (!this.validateEmail(this.form.email)) {
+            this.showMessage('Please enter a valid email address.', 'error');
+            return;
+          }
+
+          this.loading = true;
+          this.message = '';
+          this.messageType = '';
+
+          try {
+            // Simulate sending the form (replace with actual API call)
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            this.showMessage('Message sent successfully!', 'success');
+            this.form = { name: '', email: '', message: '' };
+          } catch (error) {
+            this.showMessage('Failed to send message. Please try again later.', 'error');
+          } finally {
+            this.loading = false;
+          }
+        },
+        validateEmail(email) {
+          const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          return regex.test(email);
+        },
+        showMessage(text, type) {
+          this.message = text;
+          this.messageType = type;
+        }
+      },
+      mounted() {
+        document.body.classList.toggle('dark-mode', this.darkMode);
+      }
+    }).mount('#app');
+  </script>
 </body>
 </html>

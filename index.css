@@ -1,11 +1,19 @@
-/* Index Page Specific Styles */
+/* General Body Styles */
 body {
   font-family: 'Roboto', sans-serif;
-  color: #ffffff; /* Default text color for dark mode */
-  background-color: #1a1a1a; /* Default background for dark mode */
-  margin: 0;
-  padding: 0;
+  color: #ffffff;
+  background-color: #1a1a1a;
+  margin: 0; /* Ensure no default margin */
+  padding: 0; /* Ensure no default padding */
   transition: background-color 0.3s ease, color 0.3s ease;
+  scroll-behavior: smooth; /* Smooth scroll for all elements */
+}
+
+/* Apply smooth scroll behavior across the entire document */
+html {
+  scroll-behavior: smooth;
+  margin: 0; /* Ensure no default margin */
+  padding: 0; /* Ensure no default padding */
 }
 
 body:not(.dark-mode) {
@@ -13,6 +21,7 @@ body:not(.dark-mode) {
   color: #1a1a1a;
 }
 
+/* Header Styles */
 header {
   background: #333;
   color: #fff;
@@ -23,6 +32,7 @@ header {
 nav ul {
   list-style: none;
   padding: 0;
+  margin: 0; /* Ensure no default margin */
 }
 
 nav ul li {
@@ -35,6 +45,14 @@ nav ul li a {
   text-decoration: none;
 }
 
+/* Main Element */
+main {
+  margin: 0; /* Ensure no margin */
+  padding: 0; /* Ensure no padding */
+  background-color: transparent; /* Ensure no background color */
+}
+
+/* Hero Section */
 #hero {
   position: relative;
   height: 100vh;
@@ -44,30 +62,36 @@ nav ul li a {
   text-align: center;
   overflow: hidden;
   background: linear-gradient(135deg, #1a1a1a, #003366);
+  margin: 0;
+  padding: 0;
 }
 
-body:not(.dark-mode) #hero {
-  background: linear-gradient(135deg, #ffffff, #e6f2ff);
+/* Matrix Canvas */
+#matrix-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0; /* Ensure it's behind the text */
 }
 
 .hero-content {
-  z-index: 2;
+  position: relative;
+  z-index: 1; /* Ensure the text is above the canvas */
 }
 
 .hero-content h1 {
   font-family: 'Orbitron', sans-serif;
   font-size: 4rem;
-  margin-bottom: 20px;
+  margin: 0 0 20px 0; /* Ensure no top margin */
   color: #00ffcc;
-}
-
-body:not(.dark-mode) .hero-content h1 {
-  color: #1a1a1a;
+  text-shadow: 0 0 10px rgba(0, 255, 204, 0.8);
 }
 
 .hero-content p {
   font-size: 1.5rem;
-  margin-bottom: 30px;
+  margin: 0 0 30px 0; /* Ensure no top margin */
 }
 
 .cta-button {
@@ -84,60 +108,22 @@ body:not(.dark-mode) .hero-content h1 {
   background-color: #00ccaa;
 }
 
-.hero-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-}
-
-.glow {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 300px;
-  height: 300px;
-  background: radial-gradient(circle, rgba(0, 255, 204, 0.3), transparent);
-  transform: translate(-50%, -50%);
-  animation: glow-pulse 3s infinite alternate;
-}
-
-@keyframes glow-pulse {
-  0% { transform: translate(-50%, -50%) scale(1); }
-  100% { transform: translate(-50%, -50%) scale(1.2); }
-}
-
-.circuit-lines {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: url('https://www.transparenttextures.com/patterns/circuit-board.png');
-  opacity: 0.1;
-}
-
+/* Features Section */
 #features {
-  padding: 50px 20px;
+  padding: 0; /* Ensure no padding */
   text-align: center;
   background-color: #2a2a2a;
-}
-
-body:not(.dark-mode) #features {
-  background-color: #f9f9f9;
+  position: relative; /* Ensure it's above particles */
+  z-index: 1; /* Ensure it's above particles */
+  margin: 0; /* Ensure no margin */
 }
 
 #features h2 {
   font-family: 'Orbitron', sans-serif;
   font-size: 2.5rem;
-  margin-bottom: 40px;
+  margin: 0 0 40px 0; /* Ensure no top margin */
   color: #00ffcc;
-}
-
-body:not(.dark-mode) #features h2 {
-  color: #1a1a1a;
+  padding-top: 50px; /* Add padding here if needed */
 }
 
 .feature-grid {
@@ -146,6 +132,7 @@ body:not(.dark-mode) #features h2 {
   gap: 30px;
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 20px 50px 20px; /* Add padding only at the bottom */
 }
 
 .feature-card {
@@ -154,10 +141,6 @@ body:not(.dark-mode) #features h2 {
   border-radius: 15px;
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-body:not(.dark-mode) .feature-card {
-  background: linear-gradient(135deg, #00ccaa, #009988);
 }
 
 .feature-card:hover {
@@ -183,13 +166,11 @@ body:not(.dark-mode) .feature-card {
   color: #ffffff;
 }
 
+/* Footer */
 footer {
   background-color: #333;
   color: #fff;
   text-align: center;
   padding: 20px 0;
-}
-
-body.dark-mode footer {
-  background-color: #1f1f1f;
+  margin: 0; /* Ensure no margin */
 }

@@ -8,104 +8,152 @@
   <link rel="stylesheet" href="about.css">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Orbitron:wght@500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <script src="https://unpkg.com/vue@3"></script>
 </head>
 <body>
-  <header>
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="skills.html">Skills</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-      <button id="dark-mode-toggle">
-        <span class="toggle-icon">🌙</span>
-        <span class="toggle-text">Dark Mode</span>
-      </button>
-    </nav>
-  </header>
-  <main>
-    <!-- About Section -->
-    <section id="about">
-      <h1>About Me</h1>
-      <p>I am a passionate DevOps engineer and Bug Bounty hunter with a focus on automation, Secure code, and continuous integration/continuous deployment (CI/CD). My goal is to bridge the gap between development and operations to deliver seamless, scalable, and reliable systems.</p>
-      <div class="tech-stack">
-        <h2>My Tech Stack</h2>
-        <div class="tech-icons">
-          <!-- Programming Languages -->
-          <div class="tech-category">
-            <h3>Programming Languages</h3>
-            <div class="icons">
-              <img src="https://img.icons8.com/color/96/000000/python.png" alt="Python" title="Python">
-              <img src="https://img.icons8.com/color/96/000000/golang.png" alt="Go" title="Go">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Bash_Logo_black_and_white_icon_only.svg/672px-Bash_Logo_black_and_white_icon_only.svg.png" alt="Bash" title="Bash">
-            </div>
-          </div>
+  <div id="app">
+    <header>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="skills.html">Skills</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <button id="dark-mode-toggle" @click="toggleDarkMode">
+          <span class="toggle-icon">{{ darkMode ? '☀️' : '🌙' }}</span>
+          <span class="toggle-text">{{ darkMode ? 'Light Mode' : 'Dark Mode' }}</span>
+        </button>
+      </nav>
+    </header>
+    <main>
+      <!-- About Section -->
+      <section id="about">
+        <h1>About Me</h1>
+        <p>I am a passionate DevOps engineer and Bug Bounty hunter with a focus on automation, secure code, and continuous integration/continuous deployment (CI/CD). My goal is to bridge the gap between development and operations to deliver seamless, scalable, and reliable systems.</p>
 
-          <!-- Frontend -->
-          <div class="tech-category">
-            <h3>Frontend</h3>
-            <div class="icons">
-              <img src="https://img.icons8.com/color/96/000000/html-5.png" alt="HTML" title="HTML">
-              <img src="https://img.icons8.com/color/96/000000/css3.png" alt="CSS" title="CSS">
-              <img src="https://img.icons8.com/color/96/000000/javascript.png" alt="JavaScript" title="JavaScript">
+        <!-- Tech Stack Section -->
+        <div class="tech-stack">
+          <h2>My Tech Stack</h2>
+          <div class="tech-icons">
+            <!-- Programming Languages -->
+            <div class="tech-category">
+              <h3>Programming Languages</h3>
+              <div class="icons">
+                <img v-for="lang in programmingLanguages" :key="lang.name" :src="lang.icon" :alt="lang.name" :title="lang.name">
+              </div>
             </div>
-          </div>
 
-          <!-- Databases -->
-          <div class="tech-category">
-            <h3>Databases</h3>
-            <div class="icons">
-              <img src="https://img.icons8.com/color/96/000000/mysql-logo.png" alt="MySQL" title="MySQL">
-              <img src="https://img.icons8.com/color/96/000000/mongodb.png" alt="NoSQL" title="NoSQL">
+            <!-- Frontend -->
+            <div class="tech-category">
+              <h3>Frontend</h3>
+              <div class="icons">
+                <img v-for="frontend in frontendTech" :key="frontend.name" :src="frontend.icon" :alt="frontend.name" :title="frontend.name">
+              </div>
             </div>
-          </div>
 
-          <!-- Version Control -->
-          <div class="tech-category">
-            <h3>Version Control</h3>
-            <div class="icons">
-              <img src="https://img.icons8.com/color/96/000000/git.png" alt="Git" title="Git">
+            <!-- Databases -->
+            <div class="tech-category">
+              <h3>Databases</h3>
+              <div class="icons">
+                <img v-for="db in databases" :key="db.name" :src="db.icon" :alt="db.name" :title="db.name">
+              </div>
             </div>
-          </div>
 
-          <!-- DevOps Tools -->
-          <div class="tech-category">
-            <h3>DevOps Tools</h3>
-            <div class="icons">
-              <img src="https://img.icons8.com/color/96/000000/docker.png" alt="Docker" title="Docker">
-              <img src="https://img.icons8.com/color/96/000000/kubernetes.png" alt="Kubernetes" title="Kubernetes">
-              <img src="https://img.icons8.com/color/96/000000/ansible.png" alt="Ansible" title="Ansible">
-              <img src="https://img.icons8.com/color/96/000000/jenkins.png" alt="Jenkins" title="Jenkins">
-              <img src="https://www.myqnap.org/wp-content/uploads/sonarqube-logo.png" alt="SonarQube" title="SonarQube" style="width: 60px; height: 60px;">
-              <img src="https://www.sonatype.com/hubfs/2-2023-Product%20Logos/sonatype-repo-icon.png" alt="Nexus" title="Nexus" style="width: 60px; height: 60px;">
+            <!-- Version Control -->
+            <div class="tech-category">
+              <h3>Version Control</h3>
+              <div class="icons">
+                <img v-for="vc in versionControl" :key="vc.name" :src="vc.icon" :alt="vc.name" :title="vc.name">
+              </div>
             </div>
-          </div>
 
-          <!-- Monitoring & Logging -->
-          <div class="tech-category">
-            <h3>Monitoring & Logging</h3>
-            <div class="icons">
-              <img src="https://img.icons8.com/color/96/000000/grafana.png" alt="Grafana" title="Grafana">
-              <img src="https://static-00.iconduck.com/assets.00/prometheus-icon-511x512-1vmxbcxr.png" alt="Prometheus" title="Prometheus" style="width: 60px; height: 60px;">
+            <!-- DevOps Tools -->
+            <div class="tech-category">
+              <h3>DevOps Tools</h3>
+              <div class="icons">
+                <img v-for="tool in devOpsTools" :key="tool.name" :src="tool.icon" :alt="tool.name" :title="tool.name">
+              </div>
             </div>
-          </div>
 
-          <!-- Project Management -->
-          <div class="tech-category">
-            <h3>Project Management</h3>
-            <div class="icons">
-              <img src="https://img.icons8.com/color/96/000000/jira.png" alt="Jira" title="Jira">
-              <img src="https://img.icons8.com/color/96/000000/confluence.png" alt="Confluence" title="Confluence">
+            <!-- Monitoring & Logging -->
+            <div class="tech-category">
+              <h3>Monitoring & Logging</h3>
+              <div class="icons">
+                <img v-for="monitor in monitoringTools" :key="monitor.name" :src="monitor.icon" :alt="monitor.name" :title="monitor.name">
+              </div>
+            </div>
+
+            <!-- Project Management -->
+            <div class="tech-category">
+              <h3>Project Management</h3>
+              <div class="icons">
+                <img v-for="pm in projectManagementTools" :key="pm.name" :src="pm.icon" :alt="pm.name" :title="pm.name">
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-  </main>
-  <footer>
-    <p>&copy; 2023 SecDevOps Portfolio. All rights reserved.</p>
-  </footer>
+      </section>
+    </main>
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2023 SecDevOps Portfolio. All rights reserved.</p>
+    </footer>
+  </div>
   <script src="script.js"></script>
+  <script>
+    const { createApp } = Vue;
+
+    createApp({
+      data() {
+        return {
+          darkMode: localStorage.getItem('darkMode') === 'enabled',
+          programmingLanguages: [
+            { name: 'Python', icon: 'https://img.icons8.com/color/96/000000/python.png' },
+            { name: 'Go', icon: 'https://img.icons8.com/color/96/000000/golang.png' },
+            { name: 'Bash', icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Bash_Logo_black_and_white_icon_only.svg/672px-Bash_Logo_black_and_white_icon_only.svg.png' }
+          ],
+          frontendTech: [
+            { name: 'HTML', icon: 'https://img.icons8.com/color/96/000000/html-5.png' },
+            { name: 'CSS', icon: 'https://img.icons8.com/color/96/000000/css3.png' },
+            { name: 'JavaScript', icon: 'https://img.icons8.com/color/96/000000/javascript.png' }
+          ],
+          databases: [
+            { name: 'MySQL', icon: 'https://img.icons8.com/color/96/000000/mysql-logo.png' },
+            { name: 'NoSQL', icon: 'https://img.icons8.com/color/96/000000/mongodb.png' }
+          ],
+          versionControl: [
+            { name: 'Git', icon: 'https://img.icons8.com/color/96/000000/git.png' }
+          ],
+          devOpsTools: [
+            { name: 'Docker', icon: 'https://img.icons8.com/color/96/000000/docker.png' },
+            { name: 'Kubernetes', icon: 'https://img.icons8.com/color/96/000000/kubernetes.png' },
+            { name: 'Ansible', icon: 'https://img.icons8.com/color/96/000000/ansible.png' },
+            { name: 'Jenkins', icon: 'https://img.icons8.com/color/96/000000/jenkins.png' },
+            { name: 'SonarQube', icon: 'https://www.myqnap.org/wp-content/uploads/sonarqube-logo.png' },
+            { name: 'Nexus', icon: 'https://www.sonatype.com/hubfs/2-2023-Product%20Logos/sonatype-repo-icon.png' }
+          ],
+          monitoringTools: [
+            { name: 'Grafana', icon: 'https://img.icons8.com/color/96/000000/grafana.png' },
+            { name: 'Prometheus', icon: 'https://static-00.iconduck.com/assets.00/prometheus-icon-511x512-1vmxbcxr.png' }
+          ],
+          projectManagementTools: [
+            { name: 'Jira', icon: 'https://img.icons8.com/color/96/000000/jira.png' },
+            { name: 'Confluence', icon: 'https://img.icons8.com/color/96/000000/confluence.png' }
+          ]
+        };
+      },
+      methods: {
+        toggleDarkMode() {
+          this.darkMode = !this.darkMode;
+          document.body.classList.toggle('dark-mode', this.darkMode);
+          localStorage.setItem('darkMode', this.darkMode ? 'enabled' : 'disabled');
+        }
+      },
+      mounted() {
+        document.body.classList.toggle('dark-mode', this.darkMode);
+      }
+    }).mount('#app');
+  </script>
 </body>
 </html>
